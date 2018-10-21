@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Roboy Telegram Door Opener Configuration</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+  crossorigin="anonymous">
+</head>
+  <div class="container">
+    <h2>Configuration</h2>
+    <form method="POST" action="/submit">
+      <div class="form-group">
+        <label for="botAuthCode">Telegram Bot authentication code</label>
+        <input type="text" class="form-control"
+        id="botAuthCode" name="botAuthCode"
+        placeholder="auth code comes here"
+        value="{{ confDict['botAuthCode'] }}">
+      </div>
+      <div class="form-group">
+        <label for="openerIp">IP of the door opener</label>
+        <input type="text" class="form-control"
+        id="openerIp" name="openerIp"
+        placeholder="eg. 192.168.0.137"
+        value="{{ confDict['openerIp'] }}">
+      </div>
+      <button type="submit" class="btn btn-primary">submit</button>
+    </form>
+  </div>
+</html>
