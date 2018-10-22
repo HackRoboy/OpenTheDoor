@@ -11,7 +11,7 @@ import urllib.request
 import json
 
 confDict
-with open('conf.json') as fp:
+with open(join(dirname(realpath(__file__)), 'conf.json')) as fp:
 	confDict = json.load(fp)
 
 BotAuthCode = confDict['botAuthCode']
@@ -30,13 +30,9 @@ l = range(0, len(audioFiles))
 
 def handle(msg):
 	contentType, chatType, chatId = telepot.glance(msg)
-	if (chatType == "group" and (msg["chat"]["title"] in ChatTitles)):
+	if (chatType in ["group", "supergroup"] and (msg["chat"]["title"] in ChatTitles)):
 		if contentType == "sticker" and msg["sticker"]["file_id"] == RoboyOpenDoorSticker:
 			playsound(join(AudioDir, audioFiles[random.choice(l)]))
-			requestDoorOpener()
-
-def requestDoorOpener():
-	urllib.request.urlopen("http://"+DoorOpenerIp+"/5/on")
 
 bot = telepot.Bot(BotAuthCode)
 MessageLoop(bot, handle).run_as_thread()
